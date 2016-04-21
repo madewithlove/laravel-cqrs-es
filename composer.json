@@ -1,0 +1,43 @@
+{
+  "name": "madewithlove/laravel-cqrs-es",
+  "description": "A Laravel package to kick start ES/CQRS projects using Broadway and Tactician.",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "broadway",
+    "event sourcing",
+    "ES",
+    "CQRS",
+    "Domain Driven Design",
+    "DDD"
+  ],
+  "authors": [
+    {
+      "name": "Madewithlove",
+      "email": "heroes@madewithlove.be"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "doctrine/dbal": "^2.5",
+    "broadway/broadway": "^0.9",
+    "illuminate/console": "^5.1",
+    "illuminate/database": "^5.1",
+    "illuminate/support": "^5.1",
+    "madewithlove/tactician-laravel": "^1.0"
+  },
+  "require-dev": {
+    "fabpot/php-cs-fixer": "2.0.*@dev",
+    "phpunit/phpunit": "^4.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Madewithlove\\LaravelCqrsEs\\": "src/"
+    }
+  },
+  "suggest": {
+    "elasticsearch/elasticsearch": "For persisting read models"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
