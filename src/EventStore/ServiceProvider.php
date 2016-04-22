@@ -37,8 +37,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             return new SimpleEventBus();
         });
 
-        $this->app->alias(EventStoreInterface::class, 'event_store.driver');
-        $this->app->alias(EventStoreManagementInterface::class, 'event_store.driver');
+        $this->app->alias('event_store.driver', EventStoreInterface::class);
+        $this->app->alias('event_store.driver', EventStoreManagementInterface::class);
     }
 
     /**
@@ -47,6 +47,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function provides()
     {
         return [
+            'event_store.driver',
             EventStoreManagementInterface::class,
             EventStoreInterface::class,
         ];
