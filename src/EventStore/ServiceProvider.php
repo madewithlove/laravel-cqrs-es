@@ -1,14 +1,10 @@
 <?php
 
-namespace Tinkerlist\Infrastructure\EventStore;
+namespace Madewithlove\LaravelCqrsEs\EventStore;
 
-use Broadway\EventStore\DBALEventStore;
 use Broadway\EventStore\EventStoreInterface;
 use Broadway\EventStore\Management\EventStoreManagementInterface;
-use Broadway\Serializer\SerializerInterface;
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\DriverManager;
-use Madewithlove\LaravelCqrsSe\EventStore\Console\Replay;
+use Madewithlove\LaravelCqrsEs\EventStore\Console\Replay;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -26,29 +22,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             Replay::class,
         ]);
 
-        $this->app->singleton(Connection::class, function () {
-            $driver = $this->app['config']->get('database.default');
-            $params = $this->app['config']->get("database.connections.{$driver}");
-            $params['dbname'] = $params['database'];
-            $params['user'] = $params['username'];
-            $params['driver'] = "pdo_$driver";
-
-            unset($params['database'], $params['username']);
-
-            return DriverManager::getConnection($params);
+        $this->app->singleton('event_store.driver', function () {
+            return (new EventStoreManager($this->app))->driver();
         });
 
-        $this->app->singleton(DBALEventStore::class, function () {
-            return new DBALEventStore(
-                $this->app->make(Connection::class),
-                $this->app->make(SerializerInterface::class),
-                $this->app->make(SerializerInterface::class),
-                $this->app['config']->get('broadway.event-store.table', 'event_store')
-            );
-        });
-
-        $this->app->singleton(EventStoreInterface::class, DBALEventStore::class);
-        $this->app->singleton(EventStoreManagementInterface::class, DBALEventStore::class);
+        $this->app->alias(EventStoreInterface::class, 'event_store.driver');
+        $this->app->alias(EventStoreManagementInterface::class, 'event_store.driver');
     }
 
     /**
@@ -57,10 +36,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function provides()
     {
         return [
-            Connection::class,
             EventStoreManagementInterface::class,
             EventStoreInterface::class,
-            DBALEventStore::class,
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Madewithlove\LaravelCqrsSe\Identifier;
+namespace Madewithlove\LaravelCqrsEs\Identifier;
 
 interface Identifier
 {

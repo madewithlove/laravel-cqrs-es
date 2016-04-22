@@ -1,10 +1,10 @@
 <?php
 
-namespace Madewithlove\LaravelCqrsSe\EventStore\Console;
+namespace Madewithlove\LaravelCqrsEs\EventStore\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Container\Container;
-use Madewithlove\LaravelCqrsSe\EventStore\Services\Replay as ReplayService;
+use Madewithlove\LaravelCqrsEs\EventStore\Services\Replay as ReplayService;
 
 class Replay extends Command
 {

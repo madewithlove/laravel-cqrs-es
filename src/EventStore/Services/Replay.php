@@ -1,6 +1,6 @@
 <?php
 
-namespace Madewithlove\LaravelCqrsSe\EventStore\Services;
+namespace Madewithlove\LaravelCqrsEs\EventStore\Services;
 
 use Broadway\Domain\DomainEventStream;
 use Broadway\EventHandling\EventBusInterface;

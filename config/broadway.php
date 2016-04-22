@@ -12,8 +12,11 @@ return [
     | dbal, inmemory
     */
     'event-store' => [
-        'table' => 'event_store',
         'driver' => 'dbal',
+        'dbal' => [
+            'connection' => 'mysql',
+            'table' => 'event_store',
+        ],
     ],
 
     /*
