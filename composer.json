@@ -1,6 +1,6 @@
 {
   "name": "madewithlove/laravel-cqrs-es",
-  "description": "A Laravel package to kick start CQRS\ES projects using Broadway and Tactician.",
+  "description": "A Laravel package to kick start CQRS and ES projects using Broadway and Tactician.",
   "license": "MIT",
   "keywords": [
     "laravel",
@@ -23,7 +23,7 @@
     "broadway/broadway": "^0.9",
     "illuminate/console": "^5.1",
     "illuminate/database": "^5.1",
-    "illuminate/support": "^5.1",
+    "illuminate/support": "^5.1"
   },
   "require-dev": {
     "fabpot/php-cs-fixer": "2.0.*@dev",
@@ -35,7 +35,7 @@
     }
   },
   "suggest": {
-    "madewithlove/tactician-laravel": "Laravel wrapper for a configurable command bus",
+    "madewithlove/tactician-laravel": "Laravel wrapper for a configurable command bus"
   },
   "minimum-stability": "dev",
   "prefer-stable": true
