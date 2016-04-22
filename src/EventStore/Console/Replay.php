@@ -26,20 +26,13 @@ class Replay extends Command
     protected $replayService;
 
     /**
-     * @var Container
-     */
-    protected $container;
-
-    /**
      * @param ReplayService $replayService
-     * @param Container $container
      */
-    public function __construct(ReplayService $replayService, Container $container)
+    public function __construct(ReplayService $replayService)
     {
         parent::__construct();
 
         $this->replayService = $replayService;
-        $this->container = $container;
     }
 
     /**
