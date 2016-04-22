@@ -2,31 +2,14 @@
 
 namespace Madewithlove\LaravelCqrsEs\EventStore;
 
-
 use Broadway\EventStore\DBALEventStore;
 use Broadway\EventStore\InMemoryEventStore;
 use Broadway\Serializer\SerializerInterface;
 use Doctrine\DBAL\DriverManager;
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Manager;
 
 class EventStoreManager extends Manager
 {
-
-    /**
-     * @var Container
-     */
-    protected $app;
-
-    /**
-     * EventStoreManager constructor.
-     * @param Container $app
-     */
-    public function __construct(Container $app)
-    {
-        $this->app = $app;
-    }
-
     /**
      * Get the default driver name.
      *

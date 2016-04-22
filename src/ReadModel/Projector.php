@@ -5,12 +5,6 @@ namespace Madewithlove\LaravelCqrsEs\ReadModel;
 use Broadway\Domain\DomainMessage;
 use Broadway\ReadModel\ProjectorInterface;
 
-/**
- * Created by PhpStorm.
- * User: jonas
- * Date: 20/04/16
- * Time: 16:24
- */
 class Projector implements ProjectorInterface
 {
     /**
@@ -26,8 +20,7 @@ class Projector implements ProjectorInterface
     {
         $this->methodNameInflector = $methodNameInflector;
     }
-
-
+    
     /**
      * {@inheritDoc}
      */

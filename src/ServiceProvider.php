@@ -25,5 +25,4 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             __DIR__.'/../database/migrations/' => database_path('migrations')
         ], 'migrations');
     }
-
 }
