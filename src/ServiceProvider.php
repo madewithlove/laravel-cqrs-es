@@ -9,6 +9,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->register(EventStore\ServiceProvider::class);
         $this->app->register(ReadModel\ServiceProvider::class);
         $this->app->register(Serializers\ServiceProvider::class);
+        $this->app->register(Reconstitution\ServiceProvider::class);
     }
 
     /**
