@@ -4,7 +4,7 @@ namespace Madewithlove\LaravelCqrsEs\Identifier;
 
 use Rhumsaa\Uuid\Uuid;
 
-class UuidIdentifier
+class UuidIdentifier implements Identifier
 {
     /**
      * @var Uuid
@@ -61,5 +61,23 @@ class UuidIdentifier
     public function __toString()
     {
         return $this->value->toString();
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return UuidIdentifier
+     */
+    public static function deserialize(array $data)
+    {
+        return static::fromString($data);
+    }
+
+    /**
+     * @return string
+     */
+    public function serialize()
+    {
+        return $this->toString();
     }
 }

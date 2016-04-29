@@ -2,7 +2,9 @@
 
 namespace Madewithlove\LaravelCqrsEs\Identifier;
 
-interface Identifier
+use Broadway\Serializer\SerializableInterface;
+
+interface Identifier extends SerializableInterface
 {
     /**
      * @return static
