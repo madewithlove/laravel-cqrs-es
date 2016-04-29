@@ -16,6 +16,9 @@ Add the service provider to config/app.php:
 Madewithlove\LaravelCqrsEs\ServiceProvider::class
 ```
 
+## Credits and thanks
+
+This package borrows components from [nWidart/Laravel-broadway](https://github.com/nWidart/Laravel-broadway) and includes a laravel ServiceProvider for [matthiasnoback/broadway-serialization](https://github.com/matthiasnoback/broadway-serialization).
 
 ## License
 
