@@ -9,21 +9,6 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 abstract class ContextServiceProvider extends EventServiceProvider
 {
     /**
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var string
-     */
-    protected $aggregateRoot;
-
-    /**
      * @var array
      */
     protected $projectors = [];
