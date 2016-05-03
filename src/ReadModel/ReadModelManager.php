@@ -2,8 +2,6 @@
 
 namespace Madewithlove\LaravelCqrsEs\ReadModel;
 
-use Broadway\ReadModel\InMemory\InMemoryRepository;
-use Broadway\ReadModel\RepositoryInterface;
 use Illuminate\Support\Manager;
 
 class ReadModelManager extends Manager
@@ -25,13 +23,5 @@ class ReadModelManager extends Manager
     {
         $config = $this->config->get('broadway.read_model.elasticsearch');
         return \ElasticSearch\ClientBuilder::fromConfig($config);
-    }
-
-    /**
-     * @return RepositoryInterface
-     */
-    public function createInmemoryDriver()
-    {
-        return new InMemoryRepository();
     }
 }
