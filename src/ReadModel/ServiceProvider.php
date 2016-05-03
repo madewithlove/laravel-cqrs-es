@@ -20,17 +20,15 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->app->singleton(MethodNameInflector::class, ProjectClassNameInflector::class);
 
-        $this->app->singleton('read_model.repository', function () {
+        $this->app->singleton('read_model.driver', function () {
             return (new ReadModelManager($this->app))->driver();
         });
-
-        $this->app->alias('read_model.repository', RepositoryInterface::class);
     }
 
     public function provides()
     {
         return [
-            'read_model.repository',
+            'read_model.driver',
             MethodNameInflector::class,
         ];
     }
