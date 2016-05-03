@@ -3,6 +3,7 @@
 namespace Madewithlove\LaravelCqrsEs\ReadModel;
 
 use Illuminate\Support\Manager;
+use Elasticsearch\ClientBuilder;
 
 class ReadModelManager extends Manager
 {
@@ -13,7 +14,7 @@ class ReadModelManager extends Manager
      */
     public function getDefaultDriver()
     {
-        return $this->app['config']->get('broadway.read_model.driver');
+        return $this->app['config']->get('broadway.read-model.driver');
     }
 
     /**
@@ -21,7 +22,8 @@ class ReadModelManager extends Manager
      */
     public function createElasticsearchDriver()
     {
-        $config = $this->config->get('broadway.read_model.elasticsearch');
-        return \ElasticSearch\ClientBuilder::fromConfig($config);
+        $config = $this->app['config']->get('broadway.read-model.elasticsearch');
+
+        return ClientBuilder::fromConfig($config);
     }
 }
