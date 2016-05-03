@@ -19,12 +19,12 @@ class ReadModelManager extends Manager
     }
 
     /**
-     * @return RepositoryInterface
+     * @return \ElasticSearch\Client
      */
     public function createElasticsearchDriver()
     {
         $config = $this->config->get('broadway.read_model.elasticsearch');
-        return \Elasticsearch\ClientBuilder::fromConfig($config);
+        return \ElasticSearch\ClientBuilder::fromConfig($config);
     }
 
     /**

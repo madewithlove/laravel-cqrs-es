@@ -27,6 +27,7 @@
     "matthiasnoback/broadway-serialization": "^1.0"
   },
   "require-dev": {
+    "elasticsearch/elasticsearch": "^2.1",
     "fabpot/php-cs-fixer": "2.0.*@dev",
     "phpunit/phpunit": "^4.7"
   },
