@@ -70,7 +70,7 @@ class UuidIdentifier implements Identifier
      */
     public static function deserialize(array $data)
     {
-        return static::fromString($data);
+        return static::fromString($data['value']);
     }
 
     /**
@@ -78,6 +78,8 @@ class UuidIdentifier implements Identifier
      */
     public function serialize()
     {
-        return $this->toString();
+        return [
+            'value' => $this->toString(),    
+        ];
     }
 }
