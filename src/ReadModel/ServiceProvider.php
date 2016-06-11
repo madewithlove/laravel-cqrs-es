@@ -2,8 +2,6 @@
 
 namespace Madewithlove\LaravelCqrsEs\ReadModel;
 
-use Broadway\ReadModel\RepositoryInterface;
-
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -20,8 +18,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->app->singleton(MethodNameInflector::class, ProjectClassNameInflector::class);
 
+        $this->app->singleton('read_model.manager', function () {
+            return new ReadModelManager($this->app);
+        });
+
         $this->app->singleton('read_model.driver', function () {
-            return (new ReadModelManager($this->app))->driver();
+            return $this->app->make('read_model.manager')->driver();
         });
     }
 
@@ -29,6 +31,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         return [
             'read_model.driver',
+            'read_model.manager',
             MethodNameInflector::class,
         ];
     }
