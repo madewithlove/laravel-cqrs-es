@@ -18,7 +18,6 @@ return [
         ],
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Read model storage configuration
@@ -33,5 +32,17 @@ return [
         'elasticsearch' => [
             'hosts' => ['localhost:9200']
         ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Generator configuration
+    |--------------------------------------------------------------------------
+    |
+    */
+    'generators' => [
+        'stubs' => [
+            'command' => base_path().'/vendor/madewithlove/laravel-cqrs-es/resources/stubs/'.'command.stub',
+        ],
     ],
 ];
