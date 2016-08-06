@@ -4,6 +4,9 @@ namespace Madewithlove\LaravelCqrsEs\EventStore\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Events\Dispatcher;
+use Madewithlove\LaravelCqrsEs\EventStore\Events\PostEventStoreReplay;
+use Madewithlove\LaravelCqrsEs\EventStore\Events\PreEventStoreReplay;
 use Madewithlove\LaravelCqrsEs\EventStore\Services\Replay as ReplayService;
 
 class Replay extends Command
@@ -26,13 +29,20 @@ class Replay extends Command
     protected $replayService;
 
     /**
-     * @param ReplayService $replayService
+     * @var Dispatcher
      */
-    public function __construct(ReplayService $replayService)
+    protected $dispatcher;
+
+    /**
+     * @param ReplayService $replayService
+     * @param Dispatcher $dispatcher
+     */
+    public function __construct(ReplayService $replayService, Dispatcher $dispatcher)
     {
         parent::__construct();
 
         $this->replayService = $replayService;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -50,6 +60,10 @@ class Replay extends Command
             $params['types'] = explode(',', $types);
         }
 
+        $this->dispatcher->fire(new PreEventStoreReplay());
+
         $this->replayService->replay($params);
+
+        $this->dispatcher->fire(new PostEventStoreReplay());
     }
 }
