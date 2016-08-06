@@ -25,6 +25,7 @@ class Command extends AbstractGeneratorCommand
     public function fire()
     {
         $this->callCommand();
+        $this->callCommandHandler();
 
         $this->info('All Done!');
     }
@@ -35,5 +36,13 @@ class Command extends AbstractGeneratorCommand
     private function callCommand()
     {
         $this->callCommandFile('command');
+    }
+
+    /**
+     *
+     */
+    private function callCommandHandler()
+    {
+        $this->callCommandFile('commandHandler');
     }
 }

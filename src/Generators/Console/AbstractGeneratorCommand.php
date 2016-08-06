@@ -48,7 +48,7 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
      */
     protected function parseName($name)
     {
-        return $this->getNamespace().'\\'.$name;
+        return $this->getNamespaceForType($this->option('type')).'\\'.$name;
     }
 
     /**
@@ -59,11 +59,18 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
     protected function buildClass($name)
     {
         $stub = $this->files->get($this->getStub());
+        $type = $this->option('type');
 
         $replacements = [
-            '{{namespace}}' => $this->getNamespace($name),
+            '{{namespace}}' => $this->getNamespaceForType($type),
             '{{class}}' => $this->getNameInput(),
         ];
+
+        switch ($type) {
+            case 'commandHandler':
+                $replacements['{{command}}'] = $this->getNamespaceForType('command').'\\'.$this->getNameInput();
+                break;
+        }
 
         foreach ($replacements as $placeholder => $replacement) {
             $stub = str_replace($placeholder, $replacement, $stub);
@@ -89,18 +96,17 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
     }
 
     /**
-     * Get the full namespace name for a given class.
-     *
-     * @param  string $name
+     * @param $type
      *
      * @return string
      */
-    protected function getNamespace($name = null)
+    protected function getNamespaceForType($type)
     {
+        $type = ucfirst(str_plural($type));
         $rootNamespace = $this->getAppNamespace();
         $aggregateName = $this->getAggregateName();
 
-        return $rootNamespace . implode('\\', [$aggregateName, ucfirst(str_plural($this->option('type')))]);
+        return $rootNamespace . implode('\\', [$aggregateName, $type]);
     }
 
     /**

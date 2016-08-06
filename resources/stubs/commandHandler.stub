@@ -1,0 +1,16 @@
+<?php
+
+namespace {{namespace}};
+
+use Broadway\CommandHandling\CommandHandlerInterface;
+use {{command}} as Command;
+
+class {{class}} implements CommandHandlerInterface
+{
+	/**
+	 * @param Command $command
+	 */
+	public function handle($command)
+	{
+	}
+}
