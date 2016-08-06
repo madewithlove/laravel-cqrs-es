@@ -23,11 +23,11 @@
     "broadway/broadway": "^0.9",
     "illuminate/console": "^5.1",
     "illuminate/database": "^5.1",
+    "illuminate/events": "^5.2",
     "illuminate/support": "^5.1",
     "matthiasnoback/broadway-serialization": "^1.0"
   },
   "require-dev": {
-
     "elasticsearch/elasticsearch": "^2.1",
     "laravel/framework": "^5.1",
     "fabpot/php-cs-fixer": "2.0.*@dev",
