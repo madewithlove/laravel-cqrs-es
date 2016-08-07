@@ -177,10 +177,10 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
      */
     protected function callCommandFile($type, $options = [])
     {
-        $this->call('generate:file', array_merge($options, [
+        $this->call('generate:file', array_merge([
             'name'    => $this->getNameInput(),
             '--type'  => $type,
             '--aggregate' => $this->option('aggregate'),
-        ]));
+        ], $options));
     }
 }
