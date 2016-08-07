@@ -43,6 +43,7 @@ return [
     'generators' => [
         'paths' => [
             'stubs' => resource_path('stubs/broadway'),
+            'tests' => base_path('tests'),
         ],
     ],
 ];

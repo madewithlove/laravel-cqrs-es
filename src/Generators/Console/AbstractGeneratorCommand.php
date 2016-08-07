@@ -8,6 +8,7 @@ use Illuminate\Console\GeneratorCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
 abstract class AbstractGeneratorCommand extends GeneratorCommand
@@ -45,7 +46,9 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
 
         $this->config = $config;
         $this->composer = $composer;
-        $this->settings = new Fluent();
+        $this->settings = new Fluent([
+            'paths' => $config->get('broadway.generators.paths'),
+        ]);
     }
 
     /**
@@ -54,8 +57,29 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
     public function fire()
     {
         $this->settings->type = $this->option('type');
+        $this->settings->isTest = Str::contains($this->settings->type, 'Test');
 
         parent::fire();
+    }
+
+    /**
+     * Get the destination class path.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function getPath($name)
+    {
+        $name = str_replace($this->laravel->getNamespace(), '', $name);
+        $directory = $this->laravel['path'];
+
+        if ($this->settings->isTest) {
+            $name = str_replace('Test', '', $name);
+            $name .= 'Test';
+            $directory = $this->settings->paths['tests'];
+        }
+
+        return $directory.'/'.str_replace('\\', '/', $name).'.php';
     }
 
     /**
@@ -79,18 +103,22 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
         $type = $this->settings->type;
 
         $replacements = [
-            '{{namespace}}' => $this->getNamespaceForType($type),
-            '{{class}}' => $this->getNameInput(),
+            'namespace' => $this->getNamespaceForType($type),
+            'class' => $this->getNameInput(),
         ];
 
         switch ($type) {
             case 'commandHandler':
-                $replacements['{{command}}'] = $this->getNamespaceForType('command').'\\'.$this->getNameInput();
+                $replacements['command'] = $this->getNamespaceForType('command').'\\'.$this->getNameInput();
+                break;
+            case 'commandHandlerTest':
+                $replacements['commandHandler'] = $this->getNamespaceForType('commandHandler').'\\'.$this->getNameInput();
+                $replacements['command'] = $this->getNamespaceForType('command').'\\'.$this->getNameInput();
                 break;
         }
 
         foreach ($replacements as $placeholder => $replacement) {
-            $stub = str_replace($placeholder, $replacement, $stub);
+            $stub = str_replace('{{'.$placeholder.'}}', $replacement, $stub);
         }
 
         return $stub;
@@ -142,13 +170,13 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
 
     /**
      * @param $type
-     * @param $name
      * @param array $options
+     * @internal param $name
      */
-    protected function callCommandFile($type, $name = null, $options = [])
+    protected function callCommandFile($type, $options = [])
     {
         $this->call('generate:file', array_merge($options, [
-            'name'    => $name ?: $this->getNameInput(),
+            'name'    => $this->getNameInput(),
             '--type'  => $type,
             '--aggregate' => $this->option('aggregate'),
         ]));
