@@ -7,6 +7,7 @@ use Illuminate\Console\AppNamespaceDetectorTrait;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
+use Illuminate\Support\Fluent;
 use Symfony\Component\Console\Input\InputOption;
 
 abstract class AbstractGeneratorCommand extends GeneratorCommand
@@ -29,6 +30,11 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
     protected $type;
 
     /**
+     * @var Fluent
+     */
+    protected $settings;
+
+    /**
      * @param Filesystem $files
      * @param Composer $composer
      * @param Repository $config
@@ -39,6 +45,17 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
 
         $this->config = $config;
         $this->composer = $composer;
+        $this->settings = new Fluent();
+    }
+
+    /**
+     * @return bool
+     */
+    public function fire()
+    {
+        $this->settings->type = $this->option('type');
+
+        parent::fire();
     }
 
     /**
@@ -48,7 +65,7 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
      */
     protected function parseName($name)
     {
-        return $this->getNamespaceForType($this->option('type')).'\\'.$name;
+        return $this->getNamespaceForType($this->settings->type).'\\'.$name;
     }
 
     /**
@@ -59,7 +76,7 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
     protected function buildClass($name)
     {
         $stub = $this->files->get($this->getStub());
-        $type = $this->option('type');
+        $type = $this->settings->type;
 
         $replacements = [
             '{{namespace}}' => $this->getNamespaceForType($type),
@@ -84,7 +101,9 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return $this->config->get('broadway.generators.stubs.'.$this->option('type'));
+        $stubsFolder = $this->config->get('broadway.generators.paths.stubs');
+
+        return $stubsFolder.'/'.$this->settings->type.'.stub';
     }
 
     /**

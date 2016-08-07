@@ -30,5 +30,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('migrations')
         ], 'migrations');
+
+        $this->publishes([
+            __DIR__.'/../resources/stubs/' => resource_path('stubs/broadway')
+        ], 'migrations');
     }
 }
