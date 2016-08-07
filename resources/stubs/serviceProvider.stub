@@ -1,0 +1,23 @@
+<?php
+
+namespace {{namespace}};
+
+use Madewithlove\LaravelCqrsEs\ContextServiceProvider;
+use {{rootNamespace}}{{aggregate}}\Repositories;
+
+class ServiceProvider extends ContextServiceProvider
+{
+    /**
+     * @var array
+     */
+    protected $projectors = [
+    ];
+
+    /**
+     *
+     */
+    public function register()
+    {
+        $this->app->bind(Repositories\WriteRepository::class, Repositories\DbalWriteRepository::class);
+    }
+}

@@ -65,7 +65,8 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
     /**
      * Get the destination class path.
      *
-     * @param  string  $name
+     * @param  string $name
+     *
      * @return string
      */
     protected function getPath($name)
@@ -102,11 +103,15 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
         $stub = $this->files->get($this->getStub());
         $type = $this->settings->type;
 
+        $aggregate = $this->option('aggregate');
+
         $replacements = [
+            'rootNamespace' => $this->getAppNamespace(),
             'namespace' => $this->getNamespaceForType($type),
             'class' => $this->getNameInput(),
-            'aggregate' => $this->getAggregateName(),
-            'aggregateUpper' => ucfirst($this->getAggregateName()),
+            'aggregate' => ucfirst($this->getAggregateName()),
+            'aggregateUpper' => ucfirst($aggregate),
+            'aggregateClass' => $this->getNamespaceForType('aggregates').'\\'.ucfirst($aggregate),
         ];
 
         switch ($type) {
@@ -151,11 +156,19 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
      */
     protected function getNamespaceForType($type)
     {
+        if (Str::contains($type, 'Repository')) {
+            $type = 'repository';
+        }
+
+        if (Str::contains($type, 'serviceProvider')) {
+            $type = '';
+        }
+
         $type = ucfirst(str_plural($type));
         $rootNamespace = $this->getAppNamespace();
-        $aggregateName = $this->getAggregateName();
+        $aggregateName = ucfirst($this->getAggregateName());
 
-        return $rootNamespace . implode('\\', [$aggregateName, $type]);
+        return rtrim($rootNamespace.implode('\\', [$aggregateName, $type]), '\\');
     }
 
     /**
@@ -173,13 +186,14 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
     /**
      * @param $type
      * @param array $options
+     *
      * @internal param $name
      */
     protected function callCommandFile($type, $options = [])
     {
         $this->call('generate:file', array_merge([
-            'name'    => $this->getNameInput(),
-            '--type'  => $type,
+            'name' => $this->getNameInput(),
+            '--type' => $type,
             '--aggregate' => $this->option('aggregate'),
         ], $options));
     }

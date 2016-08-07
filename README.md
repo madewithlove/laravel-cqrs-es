@@ -46,6 +46,9 @@ php artisan generate:event SaidHello --aggregate World
 ```bash
 php artisan generate:aggregate World
 # app/WorldAggregates/World.php
+# app/WorldAggregates/Repositories/WriteRepository.php
+# app/WorldAggregates/Repositories/DbalWriteRepository.php
+# app/WorldAggregates/ServiceProvider.php
 ```
 
 ## Credits and thanks
