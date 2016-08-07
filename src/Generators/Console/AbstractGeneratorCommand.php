@@ -105,6 +105,8 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
         $replacements = [
             'namespace' => $this->getNamespaceForType($type),
             'class' => $this->getNameInput(),
+            'aggregate' => $this->getAggregateName(),
+            'aggregateUpper' => ucfirst($this->getAggregateName()),
         ];
 
         switch ($type) {
