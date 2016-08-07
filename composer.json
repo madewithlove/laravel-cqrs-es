@@ -41,6 +41,9 @@
   "suggest": {
     "madewithlove/tactician-laravel": "Laravel wrapper for a configurable command bus"
   },
+  "scripts": {
+    "test": ""
+  },
   "minimum-stability": "dev",
   "prefer-stable": true
 }

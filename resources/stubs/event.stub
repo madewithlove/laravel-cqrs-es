@@ -1,0 +1,11 @@
+<?php
+
+namespace {{namespace}};
+
+use Broadway\Serializer\SerializableInterface;
+use BroadwaySerialization\Serialization\Serializable;
+
+class {{class}} implements SerializableInterface
+{
+	use Serializable;
+}
