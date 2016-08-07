@@ -1,0 +1,20 @@
+<?php
+
+namespace {{namespace}};
+
+use {{aggregateClass}};
+use Broadway\Repository\RepositoryInterface;
+
+interface WriteRepository extends RepositoryInterface
+{
+    /**
+		* Loads an aggregate from the given id.
+		*
+		* @param mixed $id
+		*
+		* @return {{aggregateUpper}}
+		*
+		* @throws AggregateNotFoundException
+		*/
+		public function load($id);
+}

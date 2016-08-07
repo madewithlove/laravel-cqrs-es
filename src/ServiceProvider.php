@@ -6,6 +6,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     public function register()
     {
+        // merge config
+        $configPath = __DIR__ . '/../config/broadway.php';
+        $this->mergeConfigFrom($configPath, 'broadway');
+
         $this->app->register(EventStore\ServiceProvider::class);
         $this->app->register(ReadModel\ServiceProvider::class);
         $this->app->register(Serializers\ServiceProvider::class);
@@ -25,6 +29,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('migrations')
+        ], 'migrations');
+
+        $this->publishes([
+            __DIR__.'/../resources/stubs/' => resource_path('stubs/broadway')
         ], 'migrations');
     }
 }

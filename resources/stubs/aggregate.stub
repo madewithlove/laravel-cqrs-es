@@ -1,0 +1,21 @@
+<?php
+
+namespace {{namespace}};
+
+use Broadway\EventSourcing\EventSourcedAggregateRoot;
+
+class {{class}} extends EventSourcedAggregateRoot
+{
+    /**
+     * @var
+     */
+    private $id;
+
+    /**
+     * @return
+     */
+    public function getAggregateRootId()
+    {
+        return $this->id;
+    }
+}

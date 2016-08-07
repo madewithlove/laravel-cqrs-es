@@ -18,7 +18,6 @@ return [
         ],
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Read model storage configuration
@@ -33,5 +32,18 @@ return [
         'elasticsearch' => [
             'hosts' => ['localhost:9200']
         ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Generator configuration
+    |--------------------------------------------------------------------------
+    |
+    */
+    'generators' => [
+        'paths' => [
+            'stubs' => resource_path('stubs/broadway'),
+            'tests' => base_path('tests'),
+        ],
     ],
 ];
