@@ -9,6 +9,7 @@ use Broadway\EventHandling\SimpleEventBus;
 use Broadway\EventStore\EventStoreInterface;
 use Broadway\EventStore\Management\EventStoreManagementInterface;
 use Madewithlove\LaravelCqrsEs\EventHandling\ReplayingEventBusInterface;
+use Madewithlove\LaravelCqrsEs\EventHandling\SimpleReplayingEventBus;
 use Madewithlove\LaravelCqrsEs\EventStore\Console\Replay;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
@@ -38,7 +39,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             return new SimpleEventBus();
         });
         $this->app->singleton(ReplayingEventBusInterface::class, function () {
-            return new SimpleEventBus();
+            return new SimpleReplayingEventBus();
         });
         $this->app->alias('event_store.driver', EventStoreInterface::class);
         $this->app->alias('event_store.driver', EventStoreManagementInterface::class);
