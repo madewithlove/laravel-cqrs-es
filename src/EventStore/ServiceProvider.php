@@ -8,8 +8,8 @@ use Broadway\EventHandling\EventBusInterface;
 use Broadway\EventHandling\SimpleEventBus;
 use Broadway\EventStore\EventStoreInterface;
 use Broadway\EventStore\Management\EventStoreManagementInterface;
+use Madewithlove\LaravelCqrsEs\EventHandling\ReplayingEventBusInterface;
 use Madewithlove\LaravelCqrsEs\EventStore\Console\Replay;
-use ReplayingEventBusInterface;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {

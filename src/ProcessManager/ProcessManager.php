@@ -1,5 +1,5 @@
 <?php
-
+namespace Madewithlove\LaravelCqrsEs\ProcessManager;
 
 use Broadway\Domain\DomainMessage;
 use Broadway\EventHandling\EventListenerInterface;
