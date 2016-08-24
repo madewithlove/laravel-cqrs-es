@@ -1,29 +1,31 @@
 <?php
 
-namespace Madewithlove\LaravelCqrsEs\ReadModel;
 
 use Broadway\Domain\DomainMessage;
-use Broadway\ReadModel\ProjectorInterface;
+use Broadway\EventHandling\EventListenerInterface;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Madewithlove\LaravelCqrsEs\Inflectors\MethodNameInflector;
 
-abstract class Projector implements ProjectorInterface
+abstract class ProcessManager implements EventListenerInterface
 {
+    use DispatchesJobs;
+
     /**
      * @var MethodNameInflector
      */
     private $methodNameInflector;
 
     /**
-     * Projector constructor.
-     * @param $methodNameInflector
+     * ProcessManager constructor.
+     * @param MethodNameInflector $methodNameInflector
      */
     public function __construct(MethodNameInflector $methodNameInflector)
     {
         $this->methodNameInflector = $methodNameInflector;
     }
-    
+
     /**
-     * {@inheritDoc}
+     * @param DomainMessage $domainMessage
      */
     public function handle(DomainMessage $domainMessage)
     {
