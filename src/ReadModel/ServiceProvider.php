@@ -2,6 +2,9 @@
 
 namespace Madewithlove\LaravelCqrsEs\ReadModel;
 
+use Madewithlove\LaravelCqrsEs\Inflectors\MethodNameInflector;
+use Madewithlove\LaravelCqrsEs\Inflectors\ProjectClassNameInflector;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**

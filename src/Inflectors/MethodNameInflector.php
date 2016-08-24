@@ -1,6 +1,6 @@
 <?php
 
-namespace Madewithlove\LaravelCqrsEs\ReadModel;
+namespace Madewithlove\LaravelCqrsEs\Inflectors;
 
 interface MethodNameInflector
 {
