@@ -1,4 +1,6 @@
 <?php
+namespace Madewithlove\LaravelCqrsEs\EventHandling;
+
 use Broadway\EventHandling\EventBusInterface;
 
 /**

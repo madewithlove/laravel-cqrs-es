@@ -5,7 +5,7 @@ namespace Madewithlove\LaravelCqrsEs;
 use Broadway\EventHandling\EventBusInterface;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
-use ReplayingEventBusInterface;
+use Madewithlove\LaravelCqrsEs\EventHandling\ReplayingEventBusInterface;
 
 abstract class ContextServiceProvider extends EventServiceProvider
 {

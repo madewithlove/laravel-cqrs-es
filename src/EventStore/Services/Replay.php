@@ -7,6 +7,7 @@ use Broadway\EventHandling\EventBusInterface;
 use Broadway\EventStore\CallableEventVisitor;
 use Broadway\EventStore\Management\Criteria;
 use Broadway\EventStore\Management\EventStoreManagementInterface;
+use Madewithlove\LaravelCqrsEs\EventHandling\ReplayingEventBusInterface;
 
 class Replay
 {
@@ -31,10 +32,10 @@ class Replay
     protected $eventBufferSize = 20;
 
     /**
-     * @param EventBusInterface $eventBus
+     * @param ReplayingEventBusInterface $eventBus
      * @param EventStoreManagementInterface $eventManager
      */
-    public function __construct(EventBusInterface $eventBus, EventStoreManagementInterface $eventManager)
+    public function __construct(ReplayingEventBusInterface $eventBus, EventStoreManagementInterface $eventManager)
     {
         $this->eventBus = $eventBus;
         $this->eventManager = $eventManager;
