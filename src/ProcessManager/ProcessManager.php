@@ -8,8 +8,6 @@ use Madewithlove\LaravelCqrsEs\Inflectors\MethodNameInflector;
 
 abstract class ProcessManager implements EventListenerInterface
 {
-    use DispatchesJobs;
-
     /**
      * @var MethodNameInflector
      */
