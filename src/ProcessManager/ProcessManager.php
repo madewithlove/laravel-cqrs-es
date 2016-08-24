@@ -3,7 +3,6 @@
 
 use Broadway\Domain\DomainMessage;
 use Broadway\EventHandling\EventListenerInterface;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Madewithlove\LaravelCqrsEs\Inflectors\MethodNameInflector;
 
 abstract class ProcessManager implements EventListenerInterface
