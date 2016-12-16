@@ -3,11 +3,10 @@
 namespace Madewithlove\LaravelCqrsEs;
 
 use Broadway\EventHandling\EventBusInterface;
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use Madewithlove\LaravelCqrsEs\EventHandling\ReplayingEventBusInterface;
 
-abstract class ContextServiceProvider extends EventServiceProvider
+abstract class ContextServiceProvider extends ServiceProvider
 {
     /**
      * @var array
@@ -20,9 +19,9 @@ abstract class ContextServiceProvider extends EventServiceProvider
     protected $processManagers = [];
 
     /**
-     * @param DispatcherContract $events
+     *
      */
-    public function boot(DispatcherContract $events)
+    public function boot()
     {
         /** @var EventBusInterface $eventBus */
         $liveEventBus = $this->app->make(EventBusInterface::class);
@@ -39,6 +38,7 @@ abstract class ContextServiceProvider extends EventServiceProvider
         foreach ($this->processManagers as $processManager) {
             $liveEventBus->subscribe($this->app->make($processManager));
         }
-        parent::boot($events);
+
+        parent::boot();
     }
 }
