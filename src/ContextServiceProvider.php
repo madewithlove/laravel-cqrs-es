@@ -3,10 +3,10 @@
 namespace Madewithlove\LaravelCqrsEs;
 
 use Broadway\EventHandling\EventBusInterface;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Madewithlove\LaravelCqrsEs\EventHandling\ReplayingEventBusInterface;
 
-abstract class ContextServiceProvider extends ServiceProvider
+abstract class ContextServiceProvider extends BaseServiceProvider
 {
     /**
      * @var array
