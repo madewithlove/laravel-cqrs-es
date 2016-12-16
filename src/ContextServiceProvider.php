@@ -38,7 +38,5 @@ abstract class ContextServiceProvider extends ServiceProvider
         foreach ($this->processManagers as $processManager) {
             $liveEventBus->subscribe($this->app->make($processManager));
         }
-
-        parent::boot();
     }
 }
