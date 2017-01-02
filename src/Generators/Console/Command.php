@@ -7,7 +7,7 @@ class Command extends AbstractGeneratorCommand
     /**
      * @var string
      */
-    protected $name = 'generate:command';
+    protected $name = 'make:cqrs:command';
 
     /**
      * @var string
