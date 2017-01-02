@@ -7,7 +7,7 @@ class File extends AbstractGeneratorCommand
     /**
      * @var string
      */
-    protected $name = 'generate:file';
+    protected $name = 'make:cqrs:file';
 
     /**
      * @var string

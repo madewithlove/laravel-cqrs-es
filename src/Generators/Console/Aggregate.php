@@ -7,7 +7,7 @@ class Aggregate extends AbstractGeneratorCommand
     /**
      * @var string
      */
-    protected $name = 'generate:aggregate';
+    protected $name = 'make:cqrs:aggregate';
 
     /**
      * @var string

@@ -7,7 +7,7 @@ class Event extends AbstractGeneratorCommand
     /**
      * @var string
      */
-    protected $name = 'generate:event';
+    protected $name = 'make:cqrs:event';
 
     /**
      * @var string
