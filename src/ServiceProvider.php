@@ -14,6 +14,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->register(ReadModel\ServiceProvider::class);
         $this->app->register(Serializers\ServiceProvider::class);
         $this->app->register(Reconstitution\ServiceProvider::class);
+        $this->app->register(Uuid\ServiceProvider::class);
+        $this->app->register(Saga\ServiceProvider::class);
     }
 
     /**

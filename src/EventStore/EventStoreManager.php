@@ -37,7 +37,6 @@ class EventStoreManager extends Manager
 
         $connection = DriverManager::getConnection($params);
 
-
         return new DBALEventStore(
             $connection,
             $this->app->make(SerializerInterface::class),
@@ -49,7 +48,7 @@ class EventStoreManager extends Manager
     /**
      * @return InMemoryEventStore
      */
-    protected function createInMemory()
+    protected function createInmemoryDriver()
     {
         return new InMemoryEventStore();
     }
