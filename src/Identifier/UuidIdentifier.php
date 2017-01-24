@@ -2,7 +2,7 @@
 
 namespace Madewithlove\LaravelCqrsEs\Identifier;
 
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class UuidIdentifier implements Identifier
 {
