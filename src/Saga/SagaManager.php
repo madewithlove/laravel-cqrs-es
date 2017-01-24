@@ -5,7 +5,10 @@ namespace Madewithlove\LaravelCqrsEs\Saga;
 use Broadway\Saga\State\InMemoryRepository;
 use Broadway\Saga\State\MongoDBRepository;
 use Doctrine\MongoDB\Connection;
+use ElasticSearcher\ElasticSearcher;
 use Illuminate\Support\Manager;
+use Madewithlove\LaravelCqrsEs\Saga\State\Elasticsearch\StateIndex;
+use Madewithlove\LaravelCqrsEs\Saga\State\ElasticSearchRepository;
 use MongoDB\Client;
 
 class SagaManager extends Manager
@@ -24,6 +27,24 @@ class SagaManager extends Manager
     protected function createInmemoryDriver()
     {
         return new InMemoryRepository();
+    }
+
+    /**
+     * @return ElasticSearchRepository
+     */
+    protected function createElasticsearchDriver()
+    {
+        /** @var ElasticSearcher $elasticSearcher */
+        $elasticSearcher = $this->app->make(ElasticSearcher::class);
+
+        $indicesManager = $elasticSearcher->indicesManager();
+
+        $broadwayConfig = $this->app['config']->get('broadway.saga.elasticsearch');
+
+        $index = new StateIndex($broadwayConfig['name']);
+        $indicesManager->register($index);
+
+        return new ElasticSearchRepository($elasticSearcher, $index);
     }
 
     /**

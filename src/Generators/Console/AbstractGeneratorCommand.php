@@ -3,17 +3,17 @@
 namespace Madewithlove\LaravelCqrsEs\Generators\Console;
 
 use Illuminate\Config\Repository;
-use Illuminate\Console\AppNamespaceDetectorTrait;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Console\DetectsApplicationNamespace;
 
 abstract class AbstractGeneratorCommand extends GeneratorCommand
 {
-    use AppNamespaceDetectorTrait;
+    use DetectsApplicationNamespace;
 
     /**
      * @var Composer

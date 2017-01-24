@@ -21,19 +21,21 @@
     "php": ">=5.6.0",
     "doctrine/dbal": "^2.5",
     "broadway/broadway": "^0.10",
-    "illuminate/console": "^5.1",
-    "illuminate/database": "^5.1",
-    "illuminate/events": "^5.1",
-    "illuminate/support": "^5.1",
-    "matthiasnoback/broadway-serialization": "^1.0"
+    "illuminate/console": "^5.4",
+    "illuminate/database": "^5.4",
+    "illuminate/events": "^5.4",
+    "illuminate/support": "^5.4",
+    "matthiasnoback/broadway-serialization": "^1.0",
+    "mattketmo/uuid-2x-bridge": "^1.0"
   },
   "require-dev": {
     "elasticsearch/elasticsearch": "^2.1",
-    "laravel/framework": "^5.1",
+    "laravel/framework": "^5.4",
     "fabpot/php-cs-fixer": "2.0.*@dev",
     "phpunit/phpunit": "^4.7",
     "alcaeus/mongo-php-adapter": "^1.0",
-    "doctrine/mongodb": "^1.4"
+    "doctrine/mongodb": "^1.4",
+    "madewithlove/elasticsearcher": "^0.4.1"
   },
   "autoload": {
     "psr-4": {
