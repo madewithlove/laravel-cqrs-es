@@ -30,7 +30,7 @@ class EventStoreManager extends Manager
 
         $params = $this->app['config']->get("database.connections.{$driver}");
         $params['dbname'] = $params['database'];
-        $params['user'] = $params['username'];
+        $params['user'] = array_key_exists('username', $params) ? $params['username'] : null;
         $params['driver'] = "pdo_$driver";
 
         unset($params['database'], $params['username']);
