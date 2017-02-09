@@ -13,7 +13,7 @@ return [
     'event-store' => [
         'driver' => 'dbal',
         'dbal' => [
-            'connection' => 'mysql',
+            'connection' => env('DB_CONNECTION', 'mysql'),
             'table' => 'event_store',
         ],
     ],
