@@ -4,7 +4,6 @@ namespace Madewithlove\LaravelCqrsEs\Tests\ReadModel;
 
 use Broadway\Domain\DomainMessage;
 use Broadway\Domain\Metadata;
-use Madewithlove\LaravelCqrsEs\Inflectors\ProcessClassNameInflector;
 use Madewithlove\LaravelCqrsEs\ProcessManager\ProcessManager;
 use Madewithlove\LaravelCqrsEs\Tests\Stubs\BookWasPurchased;
 use Madewithlove\LaravelCqrsEs\Tests\Stubs\BookWasReturned;
@@ -32,7 +31,7 @@ class ProcessManagerTest extends TestCase
 {
     public function testItCanProcessADomainMessage()
     {
-        $processor = new BooksProcessor(new ProcessClassNameInflector());
+        $processor = $this->app->make(BooksProcessor::class);
 
         $message = DomainMessage::recordNow('1', 1, new Metadata(), new BookWasPurchased());
         $processor->handle($message);
@@ -42,7 +41,7 @@ class ProcessManagerTest extends TestCase
 
     public function testItCannotProcessADomainMessage()
     {
-        $processor = new BooksProcessor(new ProcessClassNameInflector());
+        $processor = $this->app->make(BooksProcessor::class);
 
         $message = DomainMessage::recordNow('1', 1, new Metadata(), new BookWasReturned());
         $processor->handle($message);

@@ -2,15 +2,10 @@
 
 namespace Madewithlove\LaravelCqrsEs\Inflectors;
 
-class HandleClassNameInflector implements MethodNameInflector
+class HandleClassNameInflector extends ClassNameInflector
 {
     /**
-     * @param $event
-     * @return string
+     * @var string
      */
-    public function inflect($event)
-    {
-        $classParts = explode('\\', get_class($event));
-        return 'handle' . end($classParts);
-    }
+    protected $prefix = 'handle';
 }
