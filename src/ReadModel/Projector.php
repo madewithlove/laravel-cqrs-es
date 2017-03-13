@@ -3,24 +3,12 @@
 namespace Madewithlove\LaravelCqrsEs\ReadModel;
 
 use Broadway\Domain\DomainMessage;
-use Broadway\ReadModel\ProjectorInterface;
-use Madewithlove\LaravelCqrsEs\Inflectors\MethodNameInflector;
+use Madewithlove\LaravelCqrsEs\Inflectors\Traits\UsesInflector;
+use Madewithlove\LaravelCqrsEs\ReadModel\Contracts\Projector as ProjectorContract;
 
-abstract class Projector implements ProjectorInterface
+abstract class Projector implements ProjectorContract
 {
-    /**
-     * @var MethodNameInflector
-     */
-    private $methodNameInflector;
-
-    /**
-     * Projector constructor.
-     * @param $methodNameInflector
-     */
-    public function __construct(MethodNameInflector $methodNameInflector)
-    {
-        $this->methodNameInflector = $methodNameInflector;
-    }
+    use UsesInflector;
     
     /**
      * {@inheritDoc}

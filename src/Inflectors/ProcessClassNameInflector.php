@@ -2,15 +2,10 @@
 
 namespace Madewithlove\LaravelCqrsEs\Inflectors;
 
-class ProcessClassNameInflector implements MethodNameInflector
+class ProcessClassNameInflector extends ClassNameInflector
 {
     /**
-     * @param $event
-     * @return string
+     * @var string
      */
-    public function inflect($event)
-    {
-        $classParts = explode('\\', get_class($event));
-        return 'process' . end($classParts);
-    }
+    protected $prefix = 'process';
 }

@@ -2,15 +2,10 @@
 
 namespace Madewithlove\LaravelCqrsEs\Inflectors;
 
-class ProjectClassNameInflector implements MethodNameInflector
+class ProjectClassNameInflector extends ClassNameInflector
 {
     /**
-     * @param $event
-     * @return string
+     * @var string
      */
-    public function inflect($event)
-    {
-        $classParts = explode('\\', get_class($event));
-        return 'project' . end($classParts);
-    }
+    protected $prefix = 'project';
 }

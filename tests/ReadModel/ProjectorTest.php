@@ -4,7 +4,6 @@ namespace Madewithlove\LaravelCqrsEs\Tests\ReadModel;
 
 use Broadway\Domain\DomainMessage;
 use Broadway\Domain\Metadata;
-use Madewithlove\LaravelCqrsEs\Inflectors\ProjectClassNameInflector;
 use Madewithlove\LaravelCqrsEs\ReadModel\Projector;
 use Madewithlove\LaravelCqrsEs\Tests\Stubs\BookWasPurchased;
 use Madewithlove\LaravelCqrsEs\Tests\Stubs\BookWasReturned;
@@ -33,7 +32,7 @@ class ProjectorTest extends TestCase
 {
     public function testItCanProjectADomainMessage()
     {
-        $projector = new BooksProjector(new ProjectClassNameInflector());
+        $projector = $this->app->make(BooksProjector::class);
 
         $message = DomainMessage::recordNow('1', 1, new Metadata(), new BookWasPurchased());
         $projector->handle($message);
@@ -43,7 +42,7 @@ class ProjectorTest extends TestCase
 
     public function testItCannotProjectADomainMessage()
     {
-        $projector = new BooksProjector(new ProjectClassNameInflector());
+        $projector = $this->app->make(BooksProjector::class);
 
         $message = DomainMessage::recordNow('1', 1, new Metadata(), new BookWasReturned());
         $projector->handle($message);
