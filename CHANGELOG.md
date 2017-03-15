@@ -1,3 +1,10 @@
+### 1.0.1
+
+### Fixed
+
+- Fixed incorrect binding for EventManagement interface
+- Fixed missing parameters when constructing a DbalEventStore
+
 ### 1.0.0
 
 ### Changed
