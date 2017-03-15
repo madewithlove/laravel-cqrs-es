@@ -3,9 +3,9 @@
 namespace {{namespace}};
 
 use {{aggregateClass}};
-use Broadway\Repository\RepositoryInterface;
+use Broadway\Repository\Repository;
 
-interface WriteRepository extends RepositoryInterface
+interface WriteRepository extends Repository
 {
     /**
 		* Loads an aggregate from the given id.

@@ -2,12 +2,11 @@
 
 namespace Madewithlove\LaravelCqrsEs\EventStore;
 
+use Broadway\EventDispatcher\CallableEventDispatcher;
 use Broadway\EventDispatcher\EventDispatcher;
-use Broadway\EventDispatcher\EventDispatcherInterface;
-use Broadway\EventHandling\EventBusInterface;
+use Broadway\EventHandling\EventBus;
 use Broadway\EventHandling\SimpleEventBus;
-use Broadway\EventStore\EventStoreInterface;
-use Broadway\EventStore\Management\EventStoreManagementInterface;
+use Broadway\EventStore\EventStore;
 use Madewithlove\LaravelCqrsEs\EventHandling\ReplayingEventBusInterface;
 use Madewithlove\LaravelCqrsEs\EventHandling\SimpleReplayingEventBus;
 use Madewithlove\LaravelCqrsEs\EventStore\Console\Replay;
@@ -32,17 +31,17 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             return (new EventStoreManager($this->app))->driver();
         });
 
-        $this->app->singleton(EventDispatcherInterface::class, function () {
-            return new EventDispatcher();
+        $this->app->singleton(EventDispatcher::class, function () {
+            return new CallableEventDispatcher();
         });
-        $this->app->singleton(EventBusInterface::class, function () {
+        $this->app->singleton(EventBus::class, function () {
             return new SimpleEventBus();
         });
         $this->app->singleton(ReplayingEventBusInterface::class, function () {
             return new SimpleReplayingEventBus();
         });
-        $this->app->alias('event_store.driver', EventStoreInterface::class);
-        $this->app->alias('event_store.driver', EventStoreManagementInterface::class);
+        $this->app->alias('event_store.driver', EventStore::class);
+        $this->app->alias('event_store.driver', EventStoreManager::class);
     }
 
     /**

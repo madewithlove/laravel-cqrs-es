@@ -2,9 +2,9 @@
 
 namespace Madewithlove\LaravelCqrsEs\EventStore;
 
-use Broadway\EventStore\DBALEventStore;
+use Broadway\EventStore\Dbal\DBALEventStore;
 use Broadway\EventStore\InMemoryEventStore;
-use Broadway\Serializer\SerializerInterface;
+use Broadway\Serializer\Serializer;
 use Doctrine\DBAL\DriverManager;
 use Illuminate\Support\Manager;
 
@@ -30,7 +30,7 @@ class EventStoreManager extends Manager
 
         $params = $this->app['config']->get("database.connections.{$driver}");
         $params['dbname'] = $params['database'];
-        $params['user'] = $params['username'];
+        $params['user'] = array_key_exists('username', $params) ? $params['username'] : null;
         $params['driver'] = "pdo_$driver";
 
         unset($params['database'], $params['username']);
@@ -39,8 +39,8 @@ class EventStoreManager extends Manager
 
         return new DBALEventStore(
             $connection,
-            $this->app->make(SerializerInterface::class),
-            $this->app->make(SerializerInterface::class),
+            $this->app->make(Serializer::class),
+            $this->app->make(Serializer::class),
             array_get($config, 'table', 'event_store')
         );
     }

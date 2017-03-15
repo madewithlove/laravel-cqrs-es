@@ -2,6 +2,7 @@
 
 namespace Madewithlove\LaravelCqrsEs\Serializers;
 
+use Broadway\Serializer\Serializer;
 use Broadway\Serializer\SerializerInterface;
 use Broadway\Serializer\SimpleInterfaceSerializer;
 
@@ -19,7 +20,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(SerializerInterface::class, function () {
+        $this->app->bind(Serializer::class, function () {
             return new SimpleInterfaceSerializer();
         });
     }

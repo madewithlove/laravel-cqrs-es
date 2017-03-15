@@ -2,34 +2,22 @@
 namespace Madewithlove\LaravelCqrsEs\ProcessManager;
 
 use Broadway\Domain\DomainMessage;
-use Broadway\EventHandling\EventListenerInterface;
-use Madewithlove\LaravelCqrsEs\Inflectors\MethodNameInflector;
+use Madewithlove\LaravelCqrsEs\Inflectors\Traits\UsesInflector;
+use Madewithlove\LaravelCqrsEs\ProcessManager\Contracts\ProcessManager as ProcessManagerContract;
 
-abstract class ProcessManager implements EventListenerInterface
+abstract class ProcessManager implements ProcessManagerContract
 {
-    /**
-     * @var MethodNameInflector
-     */
-    private $methodNameInflector;
-
-    /**
-     * ProcessManager constructor.
-     * @param MethodNameInflector $methodNameInflector
-     */
-    public function __construct(MethodNameInflector $methodNameInflector)
-    {
-        $this->methodNameInflector = $methodNameInflector;
-    }
+    use UsesInflector;
 
     /**
      * @param DomainMessage $domainMessage
      */
     public function handle(DomainMessage $domainMessage)
     {
-        $event  = $domainMessage->getPayload();
+        $event = $domainMessage->getPayload();
         $method = $this->methodNameInflector->inflect($event);
 
-        if (! method_exists($this, $method)) {
+        if (!method_exists($this, $method)) {
             return;
         }
 

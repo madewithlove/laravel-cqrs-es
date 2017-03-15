@@ -2,10 +2,10 @@
 
 namespace Madewithlove\LaravelCqrsEs\Inflectors;
 
-class HandleClassNameInflector extends ClassNameInflector
+class ProcessClassNameInflector extends ClassNameInflector
 {
     /**
      * @var string
      */
-    protected $prefix = 'handle';
+    protected $prefix = 'process';
 }

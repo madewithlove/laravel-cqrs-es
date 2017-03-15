@@ -2,10 +2,10 @@
 
 namespace {{namespace}};
 
-use Broadway\CommandHandling\CommandHandlerInterface;
+use Broadway\CommandHandling\CommandHandler;
 use Broadway\CommandHandling\Testing\CommandHandlerScenarioTestCase;
-use Broadway\EventHandling\EventBusInterface;
-use Broadway\EventStore\EventStoreInterface;
+use Broadway\EventHandling\EventBus;
+use Broadway\EventStore\EventStore;
 use {{commandHandler}} as CommandHandler;
 use {{command}} as Command;
 
@@ -17,9 +17,9 @@ class {{class}}Test extends CommandHandlerScenarioTestCase
      * @param EventStoreInterface $eventStore
      * @param EventBusInterface $eventBus
      *
-     * @return CommandHandlerInterface
+     * @return CommandHandler
      */
-    protected function createCommandHandler(EventStoreInterface $eventStore, EventBusInterface $eventBus)
+    protected function createCommandHandler(EventStore $eventStore, EventBus $eventBus)
     {
         return new CommandHandler();
     }
