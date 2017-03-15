@@ -2,10 +2,10 @@
 
 namespace Madewithlove\LaravelCqrsEs\ProcessManager\Contracts;
 
-use Broadway\EventHandling\EventListenerInterface;
+use Broadway\EventHandling\EventListener;
 use Madewithlove\LaravelCqrsEs\Inflectors\MethodNameInflector;
 
-interface ProcessManager extends EventListenerInterface
+interface ProcessManager extends EventListener
 {
     /**
      * @param MethodNameInflector $inflector

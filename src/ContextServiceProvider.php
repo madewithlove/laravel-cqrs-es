@@ -2,6 +2,7 @@
 
 namespace Madewithlove\LaravelCqrsEs;
 
+use Broadway\EventHandling\EventBus;
 use Broadway\EventHandling\EventBusInterface;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Madewithlove\LaravelCqrsEs\EventHandling\ReplayingEventBusInterface;
@@ -24,7 +25,7 @@ abstract class ContextServiceProvider extends BaseServiceProvider
     public function boot()
     {
         /** @var EventBusInterface $eventBus */
-        $liveEventBus = $this->app->make(EventBusInterface::class);
+        $liveEventBus = $this->app->make(EventBus::class);
         $replayOnlyEventBus = $this->app->make(ReplayingEventBusInterface::class);
 
         // Subscribe Projectors to both live events and replayed events

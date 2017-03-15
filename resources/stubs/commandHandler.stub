@@ -2,10 +2,10 @@
 
 namespace {{namespace}};
 
-use Broadway\CommandHandling\CommandHandlerInterface;
+use Broadway\CommandHandling\CommandHandler;
 use {{command}} as Command;
 
-class {{class}} implements CommandHandlerInterface
+class {{class}} implements CommandHandler
 {
 	/**
 	 * @param Command $command

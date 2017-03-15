@@ -2,7 +2,9 @@
 
 namespace Madewithlove\LaravelCqrsEs\Saga;
 
+use Broadway\EventDispatcher\EventDispatcher;
 use Broadway\EventDispatcher\EventDispatcherInterface;
+use Broadway\EventHandling\EventBus;
 use Broadway\EventHandling\EventBusInterface;
 use Broadway\Saga\State\RepositoryInterface;
 use Broadway\Saga\Metadata\MetadataFactoryInterface;
@@ -44,11 +46,11 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 $sagas,
                 $this->app->make(StateManagerInterface::class),
                 $this->app->make(MetadataFactoryInterface::class),
-                $this->app->make(EventDispatcherInterface::class)
+                $this->app->make(EventDispatcher::class)
             );
         });
 
-        $this->app->make(EventBusInterface::class)->subscribe(
+        $this->app->make(EventBus::class)->subscribe(
             $this->app->make(SagaInterface::class)
         );
     }

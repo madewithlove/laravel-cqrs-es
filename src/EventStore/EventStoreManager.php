@@ -2,9 +2,9 @@
 
 namespace Madewithlove\LaravelCqrsEs\EventStore;
 
-use Broadway\EventStore\DBALEventStore;
+use Broadway\EventStore\Dbal\DBALEventStore;
 use Broadway\EventStore\InMemoryEventStore;
-use Broadway\Serializer\SerializerInterface;
+use Broadway\Serializer\Serializer;
 use Doctrine\DBAL\DriverManager;
 use Illuminate\Support\Manager;
 
@@ -39,8 +39,8 @@ class EventStoreManager extends Manager
 
         return new DBALEventStore(
             $connection,
-            $this->app->make(SerializerInterface::class),
-            $this->app->make(SerializerInterface::class),
+            $this->app->make(Serializer::class),
+            $this->app->make(Serializer::class),
             array_get($config, 'table', 'event_store')
         );
     }

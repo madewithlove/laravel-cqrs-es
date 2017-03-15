@@ -19,21 +19,23 @@
   ],
   "require": {
     "php": ">=7",
-    "doctrine/dbal": "^2.5",
-    "broadway/broadway": "^0.10",
-    "illuminate/console": "^5.4",
-    "illuminate/database": "^5.4",
-    "illuminate/events": "^5.4",
-    "illuminate/support": "^5.4",
-    "matthiasnoback/broadway-serialization": "^1.0",
-    "mattketmo/uuid-2x-bridge": "^1.0"
+    "doctrine/dbal": "~2.5",
+    "broadway/broadway": "~1.0.0",
+    "illuminate/console": "~5.4",
+    "illuminate/database": "~5.4",
+    "illuminate/events": "~5.4",
+    "illuminate/support": "~5.4",
+    "matthiasnoback/broadway-serialization": "~2.0",
+    "mattketmo/uuid-2x-bridge": "^1.0",
+    "broadway/broadway-saga": "^0.2.0",
+    "broadway/event-store-dbal": "^0.1.0",
+    "broadway/read-model-elasticsearch": "^0.2.0"
   },
   "require-dev": {
-    "elasticsearch/elasticsearch": "^2.1",
-    "laravel/framework": "^5.4",
+    "elasticsearch/elasticsearch": "~5",
+    "laravel/framework": "~5.4",
     "fabpot/php-cs-fixer": "2.0.*@dev",
     "phpunit/phpunit": "^6.0",
-    "madewithlove/elasticsearcher": "^0.4.1",
     "orchestra/testbench": "~3.0"
   },
   "autoload": {
