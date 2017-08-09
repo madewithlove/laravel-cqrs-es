@@ -1,3 +1,9 @@
+### 1.0.2
+
+### Fixed
+
+- Fixed issue where events process managers were still being executed while replaying the event store
+
 ### 1.0.1
 
 ### Fixed
