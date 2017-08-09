@@ -3,8 +3,6 @@
 namespace Madewithlove\LaravelCqrsEs\EventStore\Services;
 
 use Broadway\Domain\DomainEventStream;
-use Broadway\EventHandling\EventBus;
-use Broadway\EventHandling\EventBusInterface;
 use Broadway\EventStore\CallableEventVisitor;
 use Broadway\EventStore\Management\Criteria;
 use Broadway\EventStore\Management\EventStoreManagement;
@@ -14,7 +12,7 @@ use Madewithlove\LaravelCqrsEs\EventHandling\ReplayingEventBusInterface;
 class Replay
 {
     /**
-     * @var EventBus
+     * @var ReplayingEventBusInterface
      */
     protected $eventBus;
 
@@ -34,10 +32,10 @@ class Replay
     protected $eventBufferSize = 20;
 
     /**
-     * @param EventBus $eventBus
+     * @param ReplayingEventBusInterface $eventBus
      * @param EventStoreManagement $eventManager
      */
-    public function __construct(EventBus $eventBus, EventStoreManagement $eventManager)
+    public function __construct(ReplayingEventBusInterface $eventBus, EventStoreManagement $eventManager)
     {
         $this->eventBus = $eventBus;
         $this->eventManager = $eventManager;

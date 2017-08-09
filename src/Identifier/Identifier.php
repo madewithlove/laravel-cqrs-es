@@ -3,7 +3,6 @@
 namespace Madewithlove\LaravelCqrsEs\Identifier;
 
 use Broadway\Serializer\Serializable;
-use Broadway\Serializer\SerializableInterface;
 
 interface Identifier extends Serializable
 {
