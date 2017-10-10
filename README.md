@@ -24,12 +24,12 @@ php artisan vendor:publish --provider="Madewithlove\LaravelCqrsEs\ServiceProvide
 
 ## Documentation
 
-- [Sagas](./docs/generators.md)
+- [Generators](./docs/generators.md)
 - [Sagas](./docs/sagas.md)
 
 ## Credits and thanks
 
-This package borrows components from [nWidart/Laravel-broadway](https://github.com/nWidart/Laravel-broadway) and includes a laravel ServiceProvider for [matthiasnoback/broadway-serialization](https://github.com/matthiasnoback/broadway-serialization).
+This package borrows components from [nWidart/Laravel-broadway](https://github.com/nWidart/Laravel-broadway) and includes a Laravel ServiceProvider for [matthiasnoback/broadway-serialization](https://github.com/matthiasnoback/broadway-serialization).
 
 ## License
 
