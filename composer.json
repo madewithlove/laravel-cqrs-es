@@ -26,7 +26,6 @@
     "illuminate/events": "~5.4",
     "illuminate/support": "~5.4",
     "matthiasnoback/broadway-serialization": "~2.0",
-    "mattketmo/uuid-2x-bridge": "^1.0",
     "broadway/broadway-saga": "^0.2.0",
     "broadway/event-store-dbal": "^0.1.0",
     "broadway/read-model-elasticsearch": "^0.2.0"
