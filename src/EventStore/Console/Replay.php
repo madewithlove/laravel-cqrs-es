@@ -3,7 +3,6 @@
 namespace Madewithlove\LaravelCqrsEs\EventStore\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Events\Dispatcher;
 use Madewithlove\LaravelCqrsEs\EventStore\Events\PostEventStoreReplay;
 use Madewithlove\LaravelCqrsEs\EventStore\Events\PreEventStoreReplay;
