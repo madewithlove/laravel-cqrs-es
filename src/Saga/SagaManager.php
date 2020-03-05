@@ -55,7 +55,7 @@ class SagaManager extends Manager
         $databaseConfig = $this->app['config']->get('database.connections.mongodb');
         $broadwayConfig = $this->app['config']->get('broadway.saga.mongodb');
 
-        $options = array_get($databaseConfig, 'options', []);
+        $options = Arr::get($databaseConfig, 'options', []);
 
         $dsn = $this->getDsn($databaseConfig);
         $connection = $this->createConnection($dsn, $databaseConfig, $options);
