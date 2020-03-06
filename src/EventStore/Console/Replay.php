@@ -59,10 +59,10 @@ class Replay extends Command
             $params['types'] = explode(',', $types);
         }
 
-        $this->dispatcher->fire(new PreEventStoreReplay());
+        $this->dispatcher->dispatch(new PreEventStoreReplay());
 
         $this->replayService->replay($params);
 
-        $this->dispatcher->fire(new PostEventStoreReplay());
+        $this->dispatcher->dispatch(new PostEventStoreReplay());
     }
 }
