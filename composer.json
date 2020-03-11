@@ -21,12 +21,11 @@
     "php": ">=7",
     "doctrine/dbal": "~2.5",
     "broadway/broadway": "~1.0.0",
-    "illuminate/console": "~5.4",
-    "illuminate/database": "~5.4",
-    "illuminate/events": "~5.4",
-    "illuminate/support": "~5.4",
+    "illuminate/console": "^5.4|^5.5|^6",
+    "illuminate/database": "^5.4|^5.5|^6",
+    "illuminate/events": "^5.4|^5.5|^6",
+    "illuminate/support": "^5.4|^5.5|^6",
     "matthiasnoback/broadway-serialization": "~2.0",
-    "mattketmo/uuid-2x-bridge": "^1.0",
     "broadway/broadway-saga": "^0.2.0",
     "broadway/event-store-dbal": "^0.1.0",
     "broadway/read-model-elasticsearch": "^0.2.0"
@@ -52,6 +51,13 @@
       "tests/Stubs/BookWasPurchased.php",
       "tests/Stubs/BookWasReturned.php"
     ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Madewithlove\\LaravelCqrsEs\\ServiceProvider"
+      ]
+    }
   },
   "suggest": {
     "madewithlove/tactician-laravel": "Laravel wrapper for a configurable command bus"
