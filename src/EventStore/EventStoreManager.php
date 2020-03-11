@@ -7,6 +7,7 @@ use Broadway\EventStore\InMemoryEventStore;
 use Broadway\Serializer\Serializer;
 use Broadway\UuidGenerator\Converter\BinaryUuidConverter;
 use Doctrine\DBAL\DriverManager;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Manager;
 
 class EventStoreManager extends Manager
@@ -42,7 +43,7 @@ class EventStoreManager extends Manager
             $connection,
             $this->app->make(Serializer::class),
             $this->app->make(Serializer::class),
-            array_get($config, 'table', 'event_store'),
+            Arr::get($config, 'table', 'event_store'),
             false,
             new BinaryUuidConverter()
         );
