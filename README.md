@@ -1,3 +1,5 @@
+> :warning: **This package is no longer maintained**: Consider using https://github.com/spatie/laravel-event-sourcing instead.
+
 # laravel-cqrs-es
 
 A package to kickstart your CQRS/ES development in Laravel using the Broadway event store.
